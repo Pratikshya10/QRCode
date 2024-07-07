@@ -1,0 +1,51 @@
+﻿@model QRCode.Models.QRCodeModel
+    <style type="text/css">
+        body{
+            background-color:burlywood;
+        }
+        #header{
+            color:aqua;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin-top:30px;            
+        }
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+            gap: 15px;
+            padding:20px;
+        }
+        .qr{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:30px;
+        }
+        button{
+            width:5vw;
+            background-color:mediumaquamarine;
+        }          
+    </style>
+
+     <h2 id="header">CreateQRCode</h2>
+        <hr />
+
+@using (Html.BeginForm("CreateQRCode","Home",FormMethod.Post))
+     {
+        <div class="body">
+            <h3>@Html.Label("Enter QRCodeText")</h3>
+            
+            @Html.TextBoxFor(model => model.QRCodeText)
+            
+            <button type="submit">Create</button>
+        </div>
+        if(!string.IsNullOrEmpty(Model.QRImageUrl))
+        {
+            <div class="qr">
+                <img height="250" width="250" src="@Model.QRImageUrl"/>
+            </div> 
+        }
+     }
